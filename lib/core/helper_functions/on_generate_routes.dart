@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fruit_hub/features/splash/screens/splash_screen.dart';
+import 'package:fruit_hub/features/splash/presentation/screens/splash_screen.dart';
+
+import '../../features/on_boarding/presentation/screens/onboarding_screen.dart';
 
 Route<dynamic> onGenerateRoute(RouteSettings settings) {
   switch (settings.name) {
@@ -8,9 +9,13 @@ Route<dynamic> onGenerateRoute(RouteSettings settings) {
       return MaterialPageRoute(
         builder: (context) => const SplashScreen(),
       );
-    // case '/home':
-    //   return null;
+    case OnBoardingScreen.routeName:
+      return MaterialPageRoute(
+        builder: (context) => const OnBoardingScreen(),
+      );
     default:
-      return MaterialPageRoute(builder: (context) => const Scaffold(),);
+      return MaterialPageRoute(
+        builder: (context) => const Scaffold(),
+      );
   }
 }
