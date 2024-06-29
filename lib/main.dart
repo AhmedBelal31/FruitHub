@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/core/helper_functions/on_generate_routes.dart';
+
+import 'features/splash/screens/splash_screen.dart';
 
 void main() {
   runApp(const FruitHub());
@@ -16,7 +19,8 @@ class FruitHub extends StatelessWidget {
         useMaterial3: true,
       ),
       debugShowCheckedModeBanner: false,
-      home: Scaffold(),
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: SplashScreen.routeName,
     );
   }
 }
