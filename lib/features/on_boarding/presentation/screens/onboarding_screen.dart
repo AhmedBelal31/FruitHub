@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:fruit_hub/core/utils/app_colors.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../widgets/on_boarding_page_view.dart';
 
@@ -44,7 +46,19 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 pageController: pageController,
               ),
             ),
+            SmoothPageIndicator(
+              controller: pageController,
+              count:2,
+              effect: const SwapEffect(
+                dotHeight: 10,
+                dotWidth: 10,
+                activeDotColor: AppColors.lightPrimaryColor,
+                dotColor: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 100,)
           ],
+
         ),
       ),
     );
