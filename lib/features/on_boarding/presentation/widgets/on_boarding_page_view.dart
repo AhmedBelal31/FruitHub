@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../../core/utils/app_colors.dart';
 import '../../../../core/utils/app_images.dart';
+import '../../../../core/utils/app_text_styles.dart';
 import 'ob_boarding_page_view_item.dart';
 
 
@@ -12,7 +14,8 @@ class OnBoardingPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return PageView(
       controller: pageController,
-      children: const [
+      physics: const BouncingScrollPhysics(),
+      children:  [
         PageViewItem(
           isVisible: true,
           image: Assets.assetsImagesPageViewItem1Image,
@@ -22,26 +25,26 @@ class OnBoardingPageView extends StatelessWidget {
           title: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'مرحبًا بك في',
-                // style: TextStyles.bold23,
+                style: TextStyles.bold23,
               ),
               Text(
                 '  HUB',
-                // style: TextStyles.bold23.copyWith(
-                //   color: AppColors.secondaryColor,
-                // ),
+                style: TextStyles.bold23.copyWith(
+                  color: AppColors.secondaryColor,
+                ),
               ),
-              Text(
+               Text(
                 'Fruit',
-                // style: TextStyles.bold23.copyWith(
-                //   color: AppColors.primaryColor,
-                // ),
+                style: TextStyles.bold23.copyWith(
+                  color: AppColors.primaryColor,
+                ),
               ),
             ],
           ),
         ),
-        PageViewItem(
+        const PageViewItem(
           isVisible: false,
           image: Assets.assetsImagesPageViewItem2Image,
           backgroundImage: Assets.assetsImagesPageViewItem2BackgroundImage,
