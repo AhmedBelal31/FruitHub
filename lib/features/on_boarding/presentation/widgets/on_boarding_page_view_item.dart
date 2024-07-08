@@ -1,9 +1,11 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:fruit_hub/core/utils/app_strings.dart';
+import 'package:fruit_hub/features/home/presentation/screens/home_screen.dart';
 
+import '../../../../core/helper_functions/app_pref.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
 class PageViewItem extends StatefulWidget {
@@ -27,17 +29,18 @@ class PageViewItem extends StatefulWidget {
 }
 
 class _PageViewItemState extends State<PageViewItem> {
-  bool isChanged = false  ;
+  bool isChanged = false;
+
   @override
   void initState() {
-
-    Future.delayed(const Duration(milliseconds: 800), () {
+    Future.delayed(const Duration(milliseconds: 200), () {
       setState(() {
         isChanged = true;
       });
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -55,8 +58,8 @@ class _PageViewItemState extends State<PageViewItem> {
               ),
               AnimatedPositioned(
                 duration: const Duration(milliseconds: 200),
-                curve: Curves.bounceInOut,
-                bottom:isChanged  ? 0 : 200,
+                // curve: Curves.bounceInOut,
+                bottom: isChanged ? 0 : 200,
                 left: 0,
                 right: 0,
                 child: SvgPicture.asset(
@@ -67,11 +70,11 @@ class _PageViewItemState extends State<PageViewItem> {
                 visible: widget.isVisible,
                 child: GestureDetector(
                   onTap: () {
-                    // Prefs.setBool(kIsOnBoardingViewSeen, true);
+                    Prefs.setData(key: AppStrings.kIsFirstTime, value: false);
 
-                    // Navigator.of(context).pushReplacementNamed(
-                    //    SigninView.routeName,
-                    //     );
+                    Navigator.of(context).pushReplacementNamed(
+                      HomeScreen.routeName,
+                    );
                   },
                   child: Padding(
                     padding: const EdgeInsets.all(16),
@@ -84,7 +87,6 @@ class _PageViewItemState extends State<PageViewItem> {
                   ),
                 ),
               ),
-
             ],
           ),
         ),
@@ -102,14 +104,12 @@ class _PageViewItemState extends State<PageViewItem> {
           child: Text(
             widget.subtitle,
             textAlign: TextAlign.center,
-            // style: TextStyles.semiBold13.copyWith(
-            //   color: const Color(0xFF4E5456),
-            // ),
+            style: TextStyles.semiBold13.copyWith(
+              color: const Color(0xFF4E5456),
+            ),
           ),
-        )
+        ) ,
       ],
     );
   }
 }
-
-

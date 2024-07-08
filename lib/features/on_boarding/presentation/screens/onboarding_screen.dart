@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:fruit_hub/core/utils/app_colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../../../../core/helper_functions/app_pref.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../../core/widgets/custom_button.dart';
+import '../../../home/presentation/screens/home_screen.dart';
 import '../widgets/on_boarding_page_view.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -48,7 +52,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             ),
             SmoothPageIndicator(
               controller: pageController,
-              count:2,
+              count: 2,
               effect: const SwapEffect(
                 dotHeight: 10,
                 dotWidth: 10,
@@ -56,9 +60,32 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                 dotColor: Colors.grey,
               ),
             ),
-            const SizedBox(height: 100,)
-          ],
+            const SizedBox(
+              height: 100,
+            ),
+            Visibility(
+              visible: currentPage == 1,
+              maintainSize: true,
+              maintainAnimation: true,
+              maintainState: true,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                child: CustomButton(
+                  onPressed: () {
+                    Prefs.setData(key: AppStrings.kIsFirstTime, value: false);
 
+                    Navigator.of(context).pushReplacementNamed(
+                      HomeScreen.routeName,
+                    );
+                  },
+                  text: 'ابدا الان',
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 30,
+            ),
+          ],
         ),
       ),
     );
