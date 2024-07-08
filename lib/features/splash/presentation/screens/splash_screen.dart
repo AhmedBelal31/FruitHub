@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import '../../../../core/helper_functions/app_pref.dart';
 import '../../../../core/utils/app_images.dart';
+import '../../../../core/utils/app_strings.dart';
+import '../../../home/presentation/screens/home_screen.dart';
 import '../../../on_boarding/presentation/screens/onboarding_screen.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -13,6 +16,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+  var isFirstTime = Prefs.getData(key: AppStrings.kIsFirstTime);
   @override
   void initState() {
     executeNavigation();
@@ -24,7 +29,16 @@ class _SplashScreenState extends State<SplashScreen> {
         const Duration(
           seconds: 2,
         ), () {
-      Navigator.of(context).pushReplacementNamed(OnBoardingScreen.routeName);
+      if (isFirstTime == null || isFirstTime == true)
+        {
+          Navigator.of(context).pushReplacementNamed(OnBoardingScreen.routeName);
+
+        }
+      else
+        {
+          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+
+        }
     });
   }
 
