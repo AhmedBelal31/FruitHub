@@ -5,7 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:fruit_hub/core/utils/app_strings.dart';
 import 'package:fruit_hub/features/home/presentation/screens/home_screen.dart';
 
-import '../../../../core/helper_functions/app_pref.dart';
+import '../../../../core/services/app_pref.dart';
 import '../../../../core/utils/app_text_styles.dart';
 
 class PageViewItem extends StatefulWidget {
@@ -108,7 +108,7 @@ class _PageViewItemState extends State<PageViewItem> {
               color: const Color(0xFF4E5456),
             ),
           ),
-        ) ,
+        ),
       ],
     );
   }
