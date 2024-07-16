@@ -15,12 +15,13 @@ class CustomButton extends StatelessWidget {
       width: double.infinity,
       height: 50,
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [
-            AppColors.kButtonPrimaryColor,
-            AppColors.kButtonSecondaryColor,
-          ],
-        ),
+        // gradient: const LinearGradient(
+        //   colors: [
+        //     AppColors.kButtonPrimaryColor,
+        //     AppColors.kButtonSecondaryColor,
+        //   ],
+        // ),
+        color: AppColors.primaryColor,
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.6),

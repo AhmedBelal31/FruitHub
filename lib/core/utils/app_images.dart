@@ -7,7 +7,7 @@ class Assets {
 
   /// Assets for assetsImagesApplIcon
   /// assets/images/appl_icon.svg
-  static const String assetsImagesApplIcon = "assets/images/appl_icon.svg";
+  static const String assetsImagesAppleIcon = "assets/images/appl_icon.svg";
 
   /// Assets for assetsImagesCheck
   /// assets/images/Check.svg

@@ -6,6 +6,7 @@ import '../../../../core/services/app_pref.dart';
 import '../../../../core/utils/app_strings.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../home/presentation/screens/home_screen.dart';
+import '../../../login/presentation/screens/login_screen.dart';
 import '../widgets/on_boarding_page_view.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -75,7 +76,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     Prefs.setData(key: AppStrings.kIsFirstTime, value: false);
 
                     Navigator.of(context).pushReplacementNamed(
-                      HomeScreen.routeName,
+                      LoginScreen.routeName,
                     );
                   },
                   text: 'ابدا الان',

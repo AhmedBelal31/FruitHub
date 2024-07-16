@@ -3,10 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:fruit_hub/core/utils/app_strings.dart';
-import 'package:fruit_hub/features/home/presentation/screens/home_screen.dart';
-
 import '../../../../core/services/app_pref.dart';
 import '../../../../core/utils/app_text_styles.dart';
+import '../../../login/presentation/screens/login_screen.dart';
 
 class PageViewItem extends StatefulWidget {
   const PageViewItem({
@@ -73,7 +72,7 @@ class _PageViewItemState extends State<PageViewItem> {
                     Prefs.setData(key: AppStrings.kIsFirstTime, value: false);
 
                     Navigator.of(context).pushReplacementNamed(
-                      HomeScreen.routeName,
+                      LoginScreen.routeName,
                     );
                   },
                   child: Padding(

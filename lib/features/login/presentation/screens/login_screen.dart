@@ -8,6 +8,7 @@ import '../../../../core/widgets/do_not_have_an_account.dart';
 import '../../../../core/widgets/forget_password.dart';
 import '../../../../core/widgets/or_divider.dart';
 import '../widgets/social_login_button.dart';
+import 'register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = 'login';
@@ -46,7 +47,11 @@ class LoginScreen extends StatelessWidget {
                 onPressed: () {},
               ),
               const SizedBox(height: 16),
-              const DoNotHaveAnAccount(),
+              DoNotHaveAnAccount(
+                onTap: () {
+                  Navigator.pushNamed(context, RegisterScreen.routeName);
+                },
+              ),
               const SizedBox(height: 32),
               const OrDivider(),
               const SizedBox(height: 16),

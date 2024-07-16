@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:fruit_hub/features/login/presentation/screens/login_screen.dart';
 import '../../../../core/services/app_pref.dart';
 import '../../../../core/utils/app_images.dart';
 import '../../../../core/utils/app_strings.dart';
@@ -36,7 +37,7 @@ class _SplashScreenState extends State<SplashScreen> {
         }
       else
         {
-          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+          Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
 
         }
     });
