@@ -72,7 +72,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: CustomButton(
-                  onPressed: () {
+                  onTap: () {
                     Prefs.setData(key: AppStrings.kIsFirstTime, value: false);
 
                     Navigator.of(context).pushReplacementNamed(

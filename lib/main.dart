@@ -7,6 +7,7 @@ import 'package:fruit_hub/features/home/presentation/screens/home_screen.dart';
 import 'package:fruit_hub/generated/l10n.dart';
 
 import 'core/services/app_pref.dart';
+import 'core/utils/app_text_styles.dart';
 import 'features/splash/presentation/screens/splash_screen.dart';
 
 void main() async {
@@ -37,11 +38,14 @@ class FruitHub extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Cairo',
         primaryColor: AppColors.primaryColor,
-        appBarTheme: const AppBarTheme(
+        appBarTheme:  AppBarTheme(
           centerTitle: true,
           scrolledUnderElevation: 0,
           color: Colors.white,
-          titleTextStyle: TextStyle(color: Colors.black),
+          titleTextStyle: TextStyles.bold19.copyWith(
+            color: Colors.black,
+          ),
+
         ),
       ),
       debugShowCheckedModeBanner: false,

@@ -44,7 +44,7 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 32),
               CustomButton(
                 text: 'تسجيل الدخول',
-                onPressed: () {},
+                onTap: () {},
               ),
               const SizedBox(height: 16),
               DoNotHaveAnAccount(
@@ -92,7 +92,6 @@ class LoginScreen extends StatelessWidget {
       ),
       title: const Text(
         'تسجيل الدخول',
-        style: TextStyles.bold19,
         textAlign: TextAlign.center,
       ),
     );

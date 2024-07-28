@@ -32,11 +32,7 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
           },
         ),
         const SizedBox(width: 16),
-        SizedBox(
-          width: MediaQuery.sizeOf(context).width -
-              (kDefaultPadding * 2) -
-              24 -
-              16,
+        Expanded(
           child: Text.rich(
             TextSpan(
               children: [
