@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fruit_hub/core/services/get_it_service.dart';
+import 'package:fruit_hub/features/login/domain/repos/auth_repo.dart';
+import 'package:fruit_hub/features/login/presentation/cubits/sign_up_cubit/sign_up_cubit.dart';
 import '../widgets/register_screen_body.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -10,7 +14,12 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('حساب جديد')),
-      body: const RegisterScreenBody(),
+      body: BlocProvider(
+        create: (context) => SignUpCubit(
+          authRepo: GetItService.getIt<AuthRepo>(),
+        ),
+        child: RegisterScreenBody(),
+      ),
     );
   }
 }
