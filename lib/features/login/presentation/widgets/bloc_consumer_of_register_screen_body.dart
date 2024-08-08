@@ -1,0 +1,48 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../core/helper_functions/custom_snack_bar.dart';
+import '../cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'register_screen_body.dart';
+
+class BlocConsumerOfRegisterScreenBody extends StatelessWidget {
+  const BlocConsumerOfRegisterScreenBody({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<SignUpCubit, SignUpStates>(
+      listener: (context, state) {
+        if (state is SignUpSuccessState) {
+          customSnackBar(
+            context: context,
+            type: CustomSnackBarType.success,
+            message: 'تم التسجيل بنجاح',
+          );
+        }
+
+        if (state is SignUpFailureState) {
+          customSnackBar(
+            context: context,
+            type: CustomSnackBarType.error,
+            message: state.message,
+          );
+        }
+      },
+      builder: (context, state) {
+        return Stack(
+          children: [
+            const RegisterScreenBody(),
+            if (state is SignUpLoadingState)
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
+          ],
+        );
+      },
+    );
+  }
+}
