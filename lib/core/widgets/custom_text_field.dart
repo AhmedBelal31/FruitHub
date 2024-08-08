@@ -6,14 +6,15 @@ class CustomTextField extends StatelessWidget {
   final String hintText;
   final String? Function(String?)? validator;
   final void Function(String)? onChanged;
-  final void Function(String?)? onSaved ;
+  final void Function(String?)? onSaved;
+
   final void Function(String)? onFieldSubmitted;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final bool? obscureText;
   final Widget? suffixIcon;
 
-  final AutovalidateMode? autovalidateMode ;
+  final AutovalidateMode? autovalidateMode;
 
   const CustomTextField({
     super.key,
@@ -24,7 +25,10 @@ class CustomTextField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.obscureText,
-    this.suffixIcon, this.onSaved, this.autovalidateMode,
+    this.suffixIcon,
+    this.onSaved,
+    this.autovalidateMode,
+
   });
 
   @override
@@ -32,7 +36,7 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       autovalidateMode: autovalidateMode,
       validator: validator,
-      onSaved:onSaved ,
+      onSaved: onSaved,
       onChanged: onChanged,
       onFieldSubmitted: onFieldSubmitted,
       controller: controller,

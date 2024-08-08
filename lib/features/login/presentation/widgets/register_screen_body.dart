@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/features/login/presentation/cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import '../../../../constants.dart';
+import '../../../../core/helper_functions/custom_snack_bar.dart';
 import '../../../../core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/have_an_account.dart';
+import '../../../../core/widgets/password_field.dart';
 import '../../../../core/widgets/register_text_form_field_validations.dart';
 import '../../../../core/widgets/terms_and_conditions.dart';
 import '../screens/login_screen.dart';
@@ -19,6 +22,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   AutovalidateMode _autovalidateMode = AutovalidateMode.disabled;
   late String _name, _email, _password;
+  bool isTermsAccepted = false;
 
   @override
   Widget build(BuildContext context) {
@@ -48,32 +52,38 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                 validator: validateEmail,
               ),
               const SizedBox(height: 20),
-              CustomTextField(
-                hintText: 'كلمة المرور',
-                keyboardType: TextInputType.visiblePassword,
+              PasswordField(
                 onSaved: (value) {
                   _password = value!;
                 },
-                validator: validatePassword,
-                obscureText: true,
-                suffixIcon: const Icon(
-                  Icons.remove_red_eye,
-                  color: Color(0xFFC9CECF),
-                ),
               ),
               const SizedBox(height: 16),
-              const TermsAndConditions(),
+              TermsAndConditions(
+                onChanged: (value) {
+                  setState(() {
+                    isTermsAccepted = value;
+                  });
+                },
+              ),
               const SizedBox(height: 30),
               CustomButton(
                 text: 'انشاء حساب جديد',
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
-                    SignUpCubit.get(context).createUserWithEmailAndPassword(
-                      name: _name,
-                      email: _email,
-                      password: _password,
-                    );
+                    if (isTermsAccepted) {
+                      SignUpCubit.get(context).createUserWithEmailAndPassword(
+                        name: _name,
+                        email: _email,
+                        password: _password,
+                      );
+                    } else {
+                      customSnackBar(
+                        context: context,
+                        type: CustomSnackBarType.info,
+                        message: 'يجب الموافقة على الشروط والاحكام',
+                      );
+                    }
                   } else {
                     setState(() {
                       _autovalidateMode = AutovalidateMode.always;

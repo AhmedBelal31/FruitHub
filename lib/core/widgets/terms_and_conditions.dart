@@ -6,8 +6,10 @@ import '../utils/app_images.dart';
 import '../utils/app_text_styles.dart';
 
 class TermsAndConditions extends StatefulWidget {
+
+  final ValueChanged<bool> onChanged ;
   const TermsAndConditions({
-    super.key,
+    super.key, required this.onChanged,
   });
 
   @override
@@ -27,7 +29,7 @@ class _TermsAndConditionsState extends State<TermsAndConditions> {
           {
             setState(() {
              isTermsAccepted = value;
-
+            widget.onChanged(value);
             });
           },
         ),
