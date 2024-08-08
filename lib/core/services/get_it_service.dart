@@ -1,11 +1,11 @@
 import 'package:fruit_hub/features/login/domain/repos/auth_repo.dart';
-import 'package:fruit_hub/features/login/presentation/cubits/sign_up_cubit/sign_up_cubit.dart';
+import 'package:fruit_hub/features/login/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../features/login/data/repos/auth_repo_impl.dart';
 import 'firebase_auth_service.dart';
 
-class GetItService {
+class ServiceLocator {
   static final getIt = GetIt.instance;
 
   static Future<void> setup() async {
@@ -13,9 +13,13 @@ class GetItService {
     getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
 
     //Register Auth Repo
-    getIt.registerLazySingleton<AuthRepo>( ()=>
-        AuthRepoImpl(firebaseAuthService: getIt<FirebaseAuthService>()));
+    getIt.registerLazySingleton<AuthRepo>(
+      () => AuthRepoImpl(firebaseAuthService: getIt<FirebaseAuthService>()),
+    );
 
+    //getIt.registerFactory<SignUpCubit>(() => SignUpCubit(authRepo: getIt<AuthRepo>()));
+
+    getIt.registerFactory<SignInCubit>(() => SignInCubit(authRepo: getIt<AuthRepo>()));
 
   }
 }
