@@ -17,8 +17,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-
   var isFirstTime = Prefs.getData(key: AppStrings.kIsFirstTime);
+
   @override
   void initState() {
     executeNavigation();
@@ -30,16 +30,15 @@ class _SplashScreenState extends State<SplashScreen> {
         const Duration(
           seconds: 2,
         ), () {
-      if (isFirstTime == null || isFirstTime == true)
-        {
-          Navigator.of(context).pushReplacementNamed(OnBoardingScreen.routeName);
-
-        }
-      else
-        {
+      if (isFirstTime == null || isFirstTime == true) {
+        Navigator.of(context).pushReplacementNamed(OnBoardingScreen.routeName);
+      } else {
+        if (Prefs.getData(key: AppStrings.kIsAlreadyLogin) == true) {
+          Navigator.of(context).pushReplacementNamed(HomeScreen.routeName);
+        } else {
           Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
-
         }
+      }
     });
   }
 
