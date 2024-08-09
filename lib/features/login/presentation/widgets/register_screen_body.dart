@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fruit_hub/features/login/presentation/cubits/sign_up_cubit/sign_up_cubit.dart';
-import 'package:top_snackbar_flutter/custom_snack_bar.dart';
 import '../../../../constants.dart';
 import '../../../../core/helper_functions/custom_snack_bar.dart';
 import '../../../../core/widgets/custom_button.dart';
@@ -53,6 +52,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
               ),
               const SizedBox(height: 20),
               PasswordField(
+                validator: validatePassword,
                 onSaved: (value) {
                   _password = value!;
                 },
@@ -71,7 +71,9 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                 onTap: () {
                   if (_formKey.currentState!.validate()) {
                     _formKey.currentState!.save();
+                    FocusScope.of(context).unfocus();
                     if (isTermsAccepted) {
+
                       SignUpCubit.get(context).createUserWithEmailAndPassword(
                         name: _name,
                         email: _email,
@@ -80,7 +82,7 @@ class _RegisterScreenBodyState extends State<RegisterScreenBody> {
                     } else {
                       customSnackBar(
                         context: context,
-                        type: CustomSnackBarType.info,
+                        type: SnackBarType.info,
                         message: 'يجب الموافقة على الشروط والاحكام',
                       );
                     }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/helper_functions/custom_snack_bar.dart';
 import '../cubits/sign_up_cubit/sign_up_cubit.dart';
+import '../screens/login_screen.dart';
 import 'register_screen_body.dart';
 
 class BlocConsumerOfRegisterScreenBody extends StatelessWidget {
@@ -16,15 +17,17 @@ class BlocConsumerOfRegisterScreenBody extends StatelessWidget {
         if (state is SignUpSuccessState) {
           customSnackBar(
             context: context,
-            type: CustomSnackBarType.success,
+            type: SnackBarType.success,
             message: 'تم التسجيل بنجاح',
           );
+
+          Navigator.pushReplacementNamed(context, LoginScreen.routeName);
         }
 
         if (state is SignUpFailureState) {
           customSnackBar(
             context: context,
-            type: CustomSnackBarType.error,
+            type: SnackBarType.error,
             message: state.message,
           );
         }

@@ -41,8 +41,7 @@ class FirebaseAuthService {
       FirebaseAuthException exception) {
     switch (exception.code) {
       case 'user-not-found':
-        return CustomException(
-            message: 'البريد الالكتروني او الرقم السري غير صحيح');
+        return CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
       case 'weak-password':
         return CustomException(message: 'الباسورد ضعيف جداً.');
       case 'email-already-in-use':
@@ -60,7 +59,7 @@ class FirebaseAuthService {
         return CustomException(
             message: 'البريد الالكتروني او الرقم السري غير صحيح');
       case 'invalid-credential':
-        return CustomException(message: 'هذا البريد الالكتروني غير صالح.');
+        return CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
       default:
         return CustomException(message: 'حدث خطأ غير متوقع.');
     }
