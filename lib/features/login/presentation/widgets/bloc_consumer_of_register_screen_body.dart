@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../core/helper_functions/custom_snack_bar.dart';
+import '../../../../core/widgets/custom_progress_hud.dart';
 import '../cubits/sign_up_cubit/sign_up_cubit.dart';
 import '../screens/login_screen.dart';
 import 'register_screen_body.dart';
@@ -33,17 +34,9 @@ class BlocConsumerOfRegisterScreenBody extends StatelessWidget {
         }
       },
       builder: (context, state) {
-        return Stack(
-          children: [
-            const RegisterScreenBody(),
-            if (state is SignUpLoadingState)
-              Container(
-                color: Colors.black.withOpacity(0.5),
-                child: const Center(
-                  child: CircularProgressIndicator(),
-                ),
-              ),
-          ],
+        return CustomProgressHud(
+          isLoading: state is SignUpLoadingState,
+          child: const RegisterScreenBody(),
         );
       },
     );

@@ -15,9 +15,7 @@ class RegisterScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('حساب جديد')),
       body: BlocProvider(
-        create: (context) => SignUpCubit(
-          authRepo: ServiceLocator.getIt<AuthRepo>(),
-        ),
+        create: (context) => ServiceLocator.getIt.get<SignUpCubit>(),
         child: const BlocConsumerOfRegisterScreenBody(),
       ),
     );
