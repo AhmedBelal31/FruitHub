@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:fruit_hub/core/helper_functions/custom_snack_bar.dart';
 import 'package:fruit_hub/core/services/get_it_service.dart';
 import 'package:fruit_hub/features/login/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
-import '../../../home/presentation/screens/home_screen.dart';
 import '../widgets/bloc_consumer_of_login_screen_body.dart';
-import '../widgets/login_screen_body.dart';
 
 class LoginScreen extends StatelessWidget {
   static const routeName = 'login';

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruit_hub/core/services/app_pref.dart';
 import '../../../../core/helper_functions/custom_snack_bar.dart';
+import '../../../../core/utils/app_strings.dart';
 import '../../../home/presentation/screens/home_screen.dart';
 import '../cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'login_screen_body.dart';
@@ -21,6 +22,8 @@ class BlocConsumerOfLoginScreen extends StatelessWidget {
             type: SnackBarType.success,
             message: 'تم تسجيل الدخول بنجاح',
           );
+
+          Prefs.setData(key: AppStrings.kIsAlreadyLogin, value: true);
 
           Navigator.pushNamed(context, HomeScreen.routeName);
         }
