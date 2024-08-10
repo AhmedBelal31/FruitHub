@@ -4,6 +4,8 @@ import 'package:google_sign_in/google_sign_in.dart';
 import '../errors/exceptions.dart';
 
 class FirebaseAuthService {
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
+
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
@@ -42,7 +44,8 @@ class FirebaseAuthService {
       FirebaseAuthException exception) {
     switch (exception.code) {
       case 'user-not-found':
-        return CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
+        return CustomException(
+            message: 'البريد الالكتروني او الرقم السري غير صحيح');
       case 'weak-password':
         return CustomException(message: 'الباسورد ضعيف جداً.');
       case 'email-already-in-use':
@@ -60,18 +63,18 @@ class FirebaseAuthService {
         return CustomException(
             message: 'البريد الالكتروني او الرقم السري غير صحيح');
       case 'invalid-credential':
-        return CustomException(message: 'البريد الالكتروني او الرقم السري غير صحيح');
+        return CustomException(
+            message: 'البريد الالكتروني او الرقم السري غير صحيح');
       default:
         return CustomException(message: 'حدث خطأ غير متوقع.');
     }
   }
 
-
-
   Future<User> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
 
-    final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
+    final GoogleSignInAuthentication? googleAuth =
+        await googleUser?.authentication;
 
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -82,6 +85,12 @@ class FirebaseAuthService {
   }
 
   Future<void> signOut() async {
-    await FirebaseAuth.instance.signOut();
+    try {
+      await FirebaseAuth.instance.signOut();
+      await _googleSignIn.signOut();
+      log('User signed out successfully from both Firebase and Google.');
+    } catch (e) {
+      log('Error signing out: $e');
+    }
   }
 }

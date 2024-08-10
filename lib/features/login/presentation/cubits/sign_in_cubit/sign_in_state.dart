@@ -18,3 +18,14 @@ final class SignInFailureState extends SignInStates {
 
   SignInFailureState(this.message);
 }
+
+final class SignOutLoadingState extends SignInStates {}
+
+final class SignOutSuccessState extends SignInStates {}
+
+final class SignOutFailureState extends SignInStates {
+
+  final String message;
+
+  SignOutFailureState(this.message);
+}
