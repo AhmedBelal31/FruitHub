@@ -45,43 +45,36 @@ class AuthRepoImpl extends AuthRepo {
     }
   }
 
-
-  // @override
-  // Future<Either<Failure, UserEntity>> signInWithFacebook() async {
-  //   try {
-  //     var user = await firebaseAuthService.signInWithFacebook();
-  //     return right(UserModel.fromFirebaseUser(user));
-  //   } on CustomException catch (e) {
-  //     return left(ServerFailure(e.message));
-  //   } catch (e) {
-  //     log('Exception in signInWithFacebook || Auth Repo Impl : ${e.toString()}');
-  //     return left(ServerFailure('حدث خطأ غير متوقع.'));
-  //   }
-  // }
-  //
-
-
-
-
-
   @override
   Future<Either<Failure, UserEntity>> signInWithGoogle() async {
     try {
       var user = await firebaseAuthService.signInWithGoogle();
-      print(user);
       return right(UserModel.fromFirebaseUser(user));
-    }  catch (e) {
+    } catch (e) {
       log('Exception in signInWithGoogle || Auth Repo Impl : ${e.toString()}');
       return left(ServerFailure('حدث خطأ غير متوقع.'));
     }
   }
 
   @override
-  Future<Either<Failure, void>> signOut() async{
+  Future<Either<Failure, void>> signOut() async {
     try {
       return right(firebaseAuthService.signOut());
     } catch (e) {
       log('Exception in signOut || Auth Repo Impl : ${e.toString()}');
+      return left(ServerFailure('حدث خطأ غير متوقع.'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserEntity>> signInWithFacebook() async {
+    try {
+      var user = await firebaseAuthService.sigInWithFacebook();
+
+      return right(UserModel.fromFirebaseUser(user));
+    } catch (e) {
+      log('Exception in signInWithFacebook || Auth Repo Impl : ${e.toString()}');
+
       return left(ServerFailure('حدث خطأ غير متوقع.'));
     }
   }
