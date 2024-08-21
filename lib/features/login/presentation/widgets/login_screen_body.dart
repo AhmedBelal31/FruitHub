@@ -45,26 +45,6 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
                 validator:validateEmail,
               ),
               const SizedBox(height: 20),
-              // CustomTextField(
-              //   hintText: 'كلمة المرور',
-              //   keyboardType: TextInputType.visiblePassword,
-              //   autovalidateMode: autovalidateMode,
-              //   obscureText: true,
-              //   suffixIcon: const Icon(
-              //     Icons.remove_red_eye,
-              //     color: Color(0xFFC9CECF),
-              //   ),
-              //   onSaved: (value) {
-              //     _password = value!;
-              //   },
-              //   validator: (value) {
-              //     if (value == null || value.isEmpty) {
-              //       return 'من فضلك ادخل كلمة المرور';
-              //     }
-              //     return null;
-              //   },
-              // ),
-
               PasswordField(
                 onSaved: (value) {
                   _password = value!;
@@ -106,13 +86,17 @@ class _LoginScreenBodyState extends State<LoginScreenBody> {
               const OrDivider(),
               const SizedBox(height: 16),
               SocialLoginButton(
-                onPressed: () {},
+                onPressed: (){
+                   SignInCubit.get(context).signInWithGoogle();
+                },
                 title: 'تسجيل الدخول بواسطة جوجل',
                 image: Assets.assetsImagesGoogleIcon,
               ),
               const SizedBox(height: 16),
               SocialLoginButton(
-                onPressed: () {},
+                onPressed: () {
+                  SignInCubit.get(context).signInWithFacebook();
+                },
                 title: 'تسجيل الدخول بواسطة فيسبوك',
                 image: Assets.assetsImagesFacebookIcon,
               ),

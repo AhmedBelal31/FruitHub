@@ -62,7 +62,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               ),
             ),
             const SizedBox(
-              height: 100,
+              height: 10,
             ),
             Visibility(
               visible: currentPage == 1,

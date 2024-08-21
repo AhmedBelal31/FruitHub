@@ -15,7 +15,7 @@ class LoginScreen extends StatelessWidget {
       appBar: buildAppBar(context),
       body: BlocProvider(
         create: (context) => ServiceLocator.getIt.get<SignInCubit>(),
-        child: BlocConsumerOfLoginScreen(),
+        child:  const BlocConsumerOfLoginScreen(),
       ),
     );
   }

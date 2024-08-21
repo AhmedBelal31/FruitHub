@@ -16,7 +16,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   Bloc.observer = MyBlocObserver();
 
-  GetItService.setup();
+  ServiceLocator.setup();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
@@ -47,6 +47,9 @@ class FruitHub extends StatelessWidget {
         scaffoldBackgroundColor: Colors.white,
         fontFamily: 'Cairo',
         primaryColor: AppColors.primaryColor,
+        progressIndicatorTheme: const ProgressIndicatorThemeData(
+          color: AppColors.primaryColor,
+        ),
         appBarTheme: AppBarTheme(
           centerTitle: true,
           scrolledUnderElevation: 0,
