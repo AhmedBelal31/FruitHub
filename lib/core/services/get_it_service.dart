@@ -1,3 +1,5 @@
+import 'package:fruit_hub/core/services/database_service.dart';
+import 'package:fruit_hub/core/services/firestore_service.dart';
 import 'package:fruit_hub/features/login/domain/repos/auth_repo.dart';
 import 'package:fruit_hub/features/login/presentation/cubits/sign_in_cubit/sign_in_cubit.dart';
 import 'package:get_it/get_it.dart';
@@ -13,9 +15,11 @@ class ServiceLocator {
     //Register Firebase Auth Service
     getIt.registerSingleton<FirebaseAuthService>(FirebaseAuthService());
 
+    //Register Database Service
+    getIt.registerSingleton<DataBaseService>(FireStoreService());
     //Register Auth Repo
     getIt.registerLazySingleton<AuthRepo>(
-      () => AuthRepoImpl(firebaseAuthService: getIt<FirebaseAuthService>()),
+      () => AuthRepoImpl(firebaseAuthService: getIt<FirebaseAuthService>(), dataBaseService: getIt<DataBaseService>()),
     );
     //Register SignUpCubit
     getIt.registerFactory<SignUpCubit>(() => SignUpCubit(authRepo: getIt<AuthRepo>()));
